@@ -2,7 +2,7 @@
 
 namespace App\Application\UseCases\Author\Create;
 
-use App\Application\Factories\AuthorFactory;
+use App\Domain\Entities\Author;
 use App\Domain\Interfaces\Repositories\IAuthorsRepository;
 
 class CreateAuthorUseCase
@@ -17,7 +17,7 @@ class CreateAuthorUseCase
 
     public function execute(CreateAuthorInput $input): void
     {
-        $author = AuthorFactory::create($input->name);
+        $author = new Author($input->name);
 
         try {
             $this->repository->create($author);

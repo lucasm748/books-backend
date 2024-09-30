@@ -2,32 +2,19 @@
 
 namespace App\Domain\Entities;
 
-class Author
+class Author extends BaseEntity
 {
-    private string $id;
     private string $name;
 
-    public function __construct(
-        string $id,
-        string $name,
-    ) {
-        $this->setId($id);
-        $this->setName($name);
-    }
-
-    public function getId(): string
+    public function __construct(string $name)
     {
-        return $this->id;
+        parent::__construct();
+        $this->setName($name);
     }
 
     public function getName(): string
     {
         return $this->name;
-    }
-
-    public function setId(string $id)
-    {
-        $this->id = $id;
     }
 
     public function setName(string $name)
