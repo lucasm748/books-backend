@@ -56,7 +56,7 @@ class AuthorsRepository implements IAuthorsRepository
         ]);
     }
 
-    public function delete(int $code): void
+    public function delete(string $code): void
     {
         AuthorModel::where('id', $code)->delete();
     }
