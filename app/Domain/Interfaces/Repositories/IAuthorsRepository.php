@@ -11,5 +11,5 @@ interface IAuthorsRepository
     public function getByName(string $name): array;
     public function create(Author $author): void;
     public function update(Author $author): void;
-    public function delete(int $code): void;
+    public function delete(string $id): void;
 }

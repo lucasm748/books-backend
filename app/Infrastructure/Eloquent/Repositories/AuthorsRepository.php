@@ -13,13 +13,9 @@ class AuthorsRepository implements IAuthorsRepository
     {
         $authors = AuthorModel::all();
 
-        if ($authors->isEmpty()) {
-            throw new AuthorNotFoundException();
-        }
-
         return $authors->map(function ($author) {
             return new Author($author->id, $author->name);
-        })->toArray();
+        })->toArray() ?? [];
     }
 
     public function getById(string $id): Author
@@ -32,13 +28,9 @@ class AuthorsRepository implements IAuthorsRepository
     {
         $authors = AuthorModel::where('name', 'like', "%$name%")->get();
 
-        if ($authors->isEmpty()) {
-            throw new AuthorNotFoundException();
-        }
-
         return $authors->map(function ($author) {
             return new Author($author->id, $author->name);
-        })->toArray();
+        })->toArray() ?? [];
     }
 
     public function create(Author $author): void
@@ -56,7 +48,7 @@ class AuthorsRepository implements IAuthorsRepository
         ]);
     }
 
-    public function delete(int $code): void
+    public function delete(string $code): void
     {
         AuthorModel::where('id', $code)->delete();
     }

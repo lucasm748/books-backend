@@ -23,6 +23,6 @@ class UpdateAuthorController
 
         $this->useCase->execute($input);
 
-        return response()->json(['message' => 'Author updated'], 200);
+        return response()->json(['message' => 'Author updated'], 204);
     }
 }
