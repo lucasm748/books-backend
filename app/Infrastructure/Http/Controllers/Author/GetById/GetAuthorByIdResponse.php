@@ -18,9 +18,9 @@ class GetAuthorByIdResponse implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return [
-            'author' => [
-                'id' => $this->author->getId(),
-                'name' => $this->author->getName(),
+            'autor' => [
+                'codigo' => $this->author->getId(),
+                'nome' => $this->author->getName(),
             ]
         ];
     }

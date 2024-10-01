@@ -2,6 +2,7 @@
 
 namespace App\Application\UseCases\Author\GetById;
 
+use App\Domain\Exceptions\AuthorNotFoundException;
 use App\Domain\Interfaces\Repositories\IAuthorsRepository;
 
 class GetAuthorByIdUseCase
@@ -15,6 +16,12 @@ class GetAuthorByIdUseCase
 
     public function execute(string $id): GetAuthorByIdOutput
     {
-        return new GetAuthorByIdOutput($this->repository->getById($id));
+        $author = $this->repository->getById($id);
+
+        if (!$author) {
+            throw new AuthorNotFoundException();
+        }
+
+        return new GetAuthorByIdOutput($author);
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Infrastructure\Http\Controllers\Author\Update;
+namespace App\Infrastructure\Http\Controllers\Subject\Update;
 
 use App\Infrastructure\Http\Models\BaseRequest;
 
-class UpdateAuthorRequest extends BaseRequest
+class UpdateSubjectRequest extends BaseRequest
 {
     public function authorize()
     {
@@ -14,14 +14,14 @@ class UpdateAuthorRequest extends BaseRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'description' => 'required',
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required' => 'Nome é obrigatório',
+            'description.required' => 'Descrição é obrigatória',
         ];
     }
 }

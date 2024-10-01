@@ -2,7 +2,6 @@
 
 namespace App\Infrastructure\Http\Controllers\Author\GetAll;
 
-use App\Application\UseCases\Author\Get\GetAuthorsOutput;
 use App\Application\UseCases\Author\Get\GetAuthorsUseCase;
 use Illuminate\Routing\Controller;
 

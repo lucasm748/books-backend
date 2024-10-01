@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class AuthorModel extends Model
 {
-    protected $table = 'autor';
+    protected $table = 'Autor';
 
     protected $primaryKey = 'CodAu';
-    public $incrementing = false;
     protected $keyType = 'string';
+    public $incrementing = false;
 
     protected $fillable = ['CodAu', 'Nome'];
 
@@ -19,7 +19,7 @@ class AuthorModel extends Model
         'Nome' => 'string',
     ];
 
-    public function getNameAttribute($value)
+    public function getNameAttribute()
     {
         return $this->attributes['Nome'];
     }
@@ -29,7 +29,7 @@ class AuthorModel extends Model
         $this->attributes['Nome'] = $value;
     }
 
-    public function getIdAttribute($value)
+    public function getIdAttribute()
     {
         return $this->attributes['CodAu'];
     }

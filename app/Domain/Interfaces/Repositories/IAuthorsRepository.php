@@ -7,7 +7,7 @@ use App\Domain\Entities\Author;
 interface IAuthorsRepository
 {
     public function getAll(): array;
-    public function getById(string $id): Author | null;
+    public function getById(string $id): ?Author;
     public function getByName(string $name): array;
     public function create(Author $author): void;
     public function update(Author $author): void;

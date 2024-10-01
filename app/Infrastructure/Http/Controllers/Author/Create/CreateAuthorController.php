@@ -19,6 +19,6 @@ class CreateAuthorController extends Controller
     public function create(CreateAuthorRequest $request)
     {
         $this->usecase->execute(new CreateAuthorInput($request->name));
-        return response()->json(['message' => 'Author created successfully'], 201);
+        return response()->json(['message' => 'Autor criado com sucesso'], 201);
     }
 }
