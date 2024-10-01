@@ -8,7 +8,7 @@ use App\Domain\Entities\Author;
 use App\Domain\Interfaces\Repositories\IAuthorsRepository;
 use Illuminate\Foundation\Testing\TestCase;
 
-class GetAuthorByIdTest extends TestCase
+class GetAuthorByIdUseCaseTest extends TestCase
 {
     private GetAuthorByIdUseCase $useCase;
     private $repositoryMock;

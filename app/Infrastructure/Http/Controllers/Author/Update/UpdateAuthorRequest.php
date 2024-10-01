@@ -21,7 +21,7 @@ class UpdateAuthorRequest extends BaseRequest
     public function messages()
     {
         return [
-            'name.required' => 'Name is required',
+            'name.required' => 'Nome é obrigatório',
         ];
     }
 }

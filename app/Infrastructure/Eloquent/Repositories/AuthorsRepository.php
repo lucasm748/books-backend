@@ -13,11 +13,11 @@ class AuthorsRepository implements IAuthorsRepository
         $authors = AuthorModel::all();
 
         return $authors->map(function ($author) {
-            return new Author($author->id, $author->name);
+            return Author::create($author->id, $author->name);
         })->toArray() ?? [];
     }
 
-    public function getById(string $id): Author
+    public function getById(string $id): ?Author
     {
         $author = AuthorModel::find($id);
 
@@ -25,35 +25,35 @@ class AuthorsRepository implements IAuthorsRepository
             return null;
         }
 
-        return new Author($author->id, $author->name);
+        return Author::create($author->id, $author->name);
     }
 
     public function getByName(string $name): array
     {
-        $authors = AuthorModel::where('name', 'like', "%$name%")->get();
+        $authors = AuthorModel::where('Nome', 'like', "%$name%")->get();
 
         return $authors->map(function ($author) {
-            return new Author($author->id, $author->name);
+            return Author::create($author->id, $author->name);
         })->toArray() ?? [];
     }
 
     public function create(Author $author): void
     {
         AuthorModel::create([
-            'id' => $author->getId(),
-            'name' => $author->getName()
+            'CodAu' => $author->getId(),
+            'Nome' => $author->getName()
         ]);
     }
 
     public function update(Author $author): void
     {
-        AuthorModel::where('id', $author->getId())->update([
-            'name' => $author->getName()
+        AuthorModel::where('CodAu', $author->getId())->update([
+            'Nome' => $author->getName()
         ]);
     }
 
     public function delete(string $code): void
     {
-        AuthorModel::where('id', $code)->delete();
+        AuthorModel::where('CodAu', $code)->delete();
     }
 }

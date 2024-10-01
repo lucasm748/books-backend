@@ -9,7 +9,7 @@ use App\Domain\Exceptions\AuthorNotFoundException;
 use App\Domain\Interfaces\Repositories\IAuthorsRepository;
 use Tests\TestCase;
 
-class DeleteAuthorTest extends TestCase
+class DeleteAuthorUseCaseTest extends TestCase
 {
 
     private DeleteAuthorUseCase $useCase;

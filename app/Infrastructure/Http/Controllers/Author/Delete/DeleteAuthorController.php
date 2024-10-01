@@ -17,6 +17,6 @@ class DeleteAuthorController
     public function delete(DeleteAuthorRequest $request)
     {
         $this->useCase->execute(new DeleteAuthorInput($request->id));
-        return response()->json(['message' => 'Author deleted'], 204);
+        return response()->json(['message' => 'Autor removido'], 204);
     }
 }

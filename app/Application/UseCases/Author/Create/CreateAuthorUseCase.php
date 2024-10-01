@@ -2,7 +2,6 @@
 
 namespace App\Application\UseCases\Author\Create;
 
-use App\Domain\Entities\Author;
 use App\Domain\Factories\AuthorFactory;
 use App\Domain\Interfaces\Repositories\IAuthorsRepository;
 
