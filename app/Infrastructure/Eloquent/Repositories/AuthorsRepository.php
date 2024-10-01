@@ -19,7 +19,12 @@ class AuthorsRepository implements IAuthorsRepository
 
     public function getById(string $id): Author
     {
-        $author = AuthorModel::findOrFail($id)->first();
+        $author = AuthorModel::find($id);
+
+        if (!$author) {
+            return null;
+        }
+
         return new Author($author->id, $author->name);
     }
 

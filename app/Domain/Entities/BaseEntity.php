@@ -2,15 +2,15 @@
 
 namespace App\Domain\Entities;
 
-use Symfony\Component\Uid\Ulid;
+use App\Domain\Services\UlidGeneratorDomainService;
 
 class BaseEntity
 {
     protected $id;
 
-    public function __construct()
+    public function __construct(UlidGeneratorDomainService $uildGenerator)
     {
-        $this->id = (new Ulid())->toRfc4122();
+        $this->id = $uildGenerator->generate();
     }
 
     public function getId(): string

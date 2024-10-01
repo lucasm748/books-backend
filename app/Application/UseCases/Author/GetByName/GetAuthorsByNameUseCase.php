@@ -21,7 +21,7 @@ class GetAuthorsByNameUseCase
         if (empty($authors)) {
             throw new AuthorNotFoundException();
         }
-        dd($authors);
+
         return new GetAuthorsByNameOutput($authors);
     }
 }
