@@ -18,9 +18,9 @@ class GetSubjectByIdResponse implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return [
-            'assunto' => [
-                'codigo' => $this->subject->getId(),
-                'descricao' => $this->subject->getDescription(),
+            'subject' => [
+                'id' => $this->subject->getId(),
+                'description' => $this->subject->getDescription(),
             ]
         ];
     }
