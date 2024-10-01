@@ -12,6 +12,8 @@ services:
             - books-network
         depends_on:
             - mysql
+        environment:
+            - XDEBUG_MODE=${XDEBUG_MODE}
 
     nginx:
         container_name: 'books-nginx'
