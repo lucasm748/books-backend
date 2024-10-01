@@ -23,6 +23,7 @@ class UpdateAuthorUseCase
         }
 
         $author->setName($input->name ?? $author->getName());
+
         $this->repository->update($author);
     }
 }

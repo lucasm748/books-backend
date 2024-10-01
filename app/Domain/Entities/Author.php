@@ -2,14 +2,22 @@
 
 namespace App\Domain\Entities;
 
-class Author extends BaseEntity
+use App\Domain\Services\UlidGeneratorDomainService;
+
+class Author
 {
+    private string $id;
     private string $name;
 
-    public function __construct(string $name)
+    private function __construct(string $id, string $name)
     {
-        parent::__construct();
-        $this->setName($name);
+        $this->id = $id;
+        $this->name = $name;
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
     }
 
     public function getName(): string
@@ -17,8 +25,13 @@ class Author extends BaseEntity
         return $this->name;
     }
 
-    public function setName(string $name)
+    public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    public static function create(string $id, string $name): self
+    {
+        return new self($id, $name);
     }
 }
