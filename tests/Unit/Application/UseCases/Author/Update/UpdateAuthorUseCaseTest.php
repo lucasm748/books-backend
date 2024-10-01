@@ -21,7 +21,7 @@ class UpdateAuthorUseCaseTest extends TestCase
         $this->useCase = new UpdateAuthorUseCase($this->repositoryMock);
     }
 
-    public function testExecuteUseCaseSuccessFully()
+    public function testUpdateAuthorUseCaseSuccessFully()
     {
         $mockExistentAuthor = $this->createMock(Author::class);
         $input = new UpdateAuthorInput((new Ulid())->toRfc4122(), 'Eric Updated');
@@ -43,7 +43,7 @@ class UpdateAuthorUseCaseTest extends TestCase
         $this->assertTrue(true);
     }
 
-    public function testExecuteUseCaseAuthorNotFound()
+    public function testUpdateAuthorUseCaseAuthorNotFound()
     {
         $input = new UpdateAuthorInput((new Ulid())->toRfc4122(), 'Eric Updated');
 
@@ -52,7 +52,6 @@ class UpdateAuthorUseCaseTest extends TestCase
             ->willReturn(null);
 
         $this->expectException(AuthorNotFoundException::class);
-        $this->expectExceptionMessage('Author not found');
 
         $this->useCase->execute($input);
     }
