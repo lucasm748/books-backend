@@ -2,8 +2,6 @@
 
 namespace App\Domain\Entities;
 
-use App\Domain\Services\UlidGeneratorDomainService;
-
 class Author
 {
     private string $id;

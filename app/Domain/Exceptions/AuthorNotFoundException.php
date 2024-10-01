@@ -8,6 +8,6 @@ class AuthorNotFoundException extends Exception
 {
     public function __construct()
     {
-        parent::__construct('Author not found');
+        parent::__construct('Autor não encontrado');
     }
 }
