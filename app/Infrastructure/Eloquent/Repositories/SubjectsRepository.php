@@ -3,8 +3,10 @@
 namespace App\Infrastructure\Eloquent\Repositories;
 
 use App\Domain\Entities\Subject;
+use App\Domain\Exceptions\SubjectDeleteException;
 use App\Domain\Interfaces\Repositories\ISubjectsRepository;
 use App\Infrastructure\Eloquent\Models\SubjectModel;
+use Illuminate\Support\Facades\Log;
 
 class SubjectsRepository implements ISubjectsRepository
 {
@@ -26,6 +28,15 @@ class SubjectsRepository implements ISubjectsRepository
         }
 
         return Subject::create($subject->id, $subject->description);
+    }
+
+    public function getByIds(array $ids): array
+    {
+        $subjects = SubjectModel::whereIn('CodAs', $ids)->get();
+
+        return $subjects->map(function ($subject) {
+            return Subject::create($subject->id, $subject->description);
+        })->toArray() ?? [];
     }
 
     public function getByDescription(string $description): array
@@ -54,6 +65,10 @@ class SubjectsRepository implements ISubjectsRepository
 
     public function delete(string $code): void
     {
-        SubjectModel::where('CodAs', $code)->delete();
+        try {
+            SubjectModel::where('CodAs', $code)->delete();
+        } catch (\Exception $e) {
+            throw new SubjectDeleteException();
+        }
     }
 }

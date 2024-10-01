@@ -16,10 +16,10 @@ class GetSubjectsByDescriptionResponse implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return  [
-            'assuntos' => array_map(function ($subject) {
+            'subjects' => array_map(function ($subject) {
                 return [
-                    'codigo' => $subject->getId(),
-                    'descricao' => $subject->getDescription()
+                    'id' => $subject->getId(),
+                    'description' => $subject->getDescription()
                 ];
             }, $this->subjects)
         ];

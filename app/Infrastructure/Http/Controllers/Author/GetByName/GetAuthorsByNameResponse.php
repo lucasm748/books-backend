@@ -16,10 +16,10 @@ class GetAuthorsByNameResponse implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return  [
-            'autores' => array_map(function ($author) {
+            'authors' => array_map(function ($author) {
                 return [
-                    'codigo' => $author->getId(),
-                    'nome' => $author->getName()
+                    'id' => $author->getId(),
+                    'name' => $author->getName()
                 ];
             }, $this->authors)
         ];

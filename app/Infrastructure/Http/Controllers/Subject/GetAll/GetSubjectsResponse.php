@@ -18,10 +18,10 @@ class GetSubjectsResponse implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return [
-            'assuntos' => array_map(function (Subject $subject) {
+            'subjects' => array_map(function (Subject $subject) {
                 return [
-                    'codigo' => $subject->getId(),
-                    'descricao' => $subject->getDescription(),
+                    'id' => $subject->getId(),
+                    'description' => $subject->getDescription(),
 
                 ];
             }, $this->subjects)

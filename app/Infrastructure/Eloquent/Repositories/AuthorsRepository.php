@@ -3,6 +3,7 @@
 namespace App\Infrastructure\Eloquent\Repositories;
 
 use App\Domain\Entities\Author;
+use App\Domain\Exceptions\AuthorDeleteException;
 use App\Domain\Interfaces\Repositories\IAuthorsRepository;
 use App\Infrastructure\Eloquent\Models\AuthorModel;
 
@@ -26,6 +27,15 @@ class AuthorsRepository implements IAuthorsRepository
         }
 
         return Author::create($author->id, $author->name);
+    }
+
+    public function getByIds(array $ids): array
+    {
+        $authors = AuthorModel::whereIn('CodAu', $ids)->get();
+
+        return $authors->map(function ($author) {
+            return Author::create($author->id, $author->name);
+        })->toArray() ?? [];
     }
 
     public function getByName(string $name): array
@@ -54,6 +64,10 @@ class AuthorsRepository implements IAuthorsRepository
 
     public function delete(string $code): void
     {
-        AuthorModel::where('CodAu', $code)->delete();
+        try {
+            AuthorModel::where('CodAu', $code)->delete();
+        } catch (\Exception $e) {
+            throw new AuthorDeleteException();
+        }
     }
 }

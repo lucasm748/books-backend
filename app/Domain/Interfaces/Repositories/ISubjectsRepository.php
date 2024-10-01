@@ -8,6 +8,7 @@ interface ISubjectsRepository
 {
     public function getAll(): array;
     public function getById(string $id): ?Subject;
+    public function getByIds(array $ids): array;
     public function getByDescription(string $description): array;
     public function create(Subject $subject): void;
     public function update(Subject $subject): void;
