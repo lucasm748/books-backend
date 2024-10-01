@@ -8,7 +8,6 @@ use App\Domain\Entities\Author;
 use App\Domain\Factories\AuthorFactory;
 use App\Domain\Interfaces\Repositories\IAuthorsRepository;
 use App\Domain\Services\UlidGeneratorDomainService;
-use App\Infrastructure\Eloquent\Repositories\AuthorsRepository;
 use Illuminate\Foundation\Testing\TestCase;
 
 class CreateAuthorUseCaseTest extends TestCase

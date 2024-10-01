@@ -9,7 +9,7 @@ use App\Domain\Exceptions\AuthorNotFoundException;
 use App\Domain\Interfaces\Repositories\IAuthorsRepository;
 use Illuminate\Foundation\Testing\TestCase;
 
-class GetAuthorsByNameTest extends TestCase
+class GetAuthorsByNameUseCaseTest extends TestCase
 {
     private GetAuthorsByNameUseCase  $useCase;
     private $repositoryMock;
