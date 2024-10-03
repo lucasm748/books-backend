@@ -46,4 +46,4 @@ Para rodar as migrations
 `docker exec books-backend php artisan migrate `
 
 ###Postman Collection
-https://api.postman.com/collections/83683-ac0d1ff6-1da4-4fe6-b809-2e05af148a90?access_key=PMAT-01J97TV8VB6DMEV80ZSB9AST7J
+https://bit.ly/4gR4XXK
