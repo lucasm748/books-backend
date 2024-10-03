@@ -46,4 +46,4 @@ Para rodar as migrations
 `docker exec books-backend php artisan migrate `
 
 ###Postman Collection
-https://bit.ly/4gR4XXK
+A Collection do postman está disponível para download aqui no repositório na raiz do projeto.
