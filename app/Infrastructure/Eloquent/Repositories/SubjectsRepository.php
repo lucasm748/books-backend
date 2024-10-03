@@ -6,7 +6,7 @@ use App\Domain\Entities\Subject;
 use App\Domain\Exceptions\SubjectDeleteException;
 use App\Domain\Interfaces\Repositories\ISubjectsRepository;
 use App\Infrastructure\Eloquent\Models\SubjectModel;
-use Illuminate\Support\Facades\Log;
+
 
 class SubjectsRepository implements ISubjectsRepository
 {

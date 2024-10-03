@@ -4,7 +4,17 @@ namespace App\Infrastructure\Http\Controllers\Author\Create;
 
 use App\Infrastructure\Http\Models\BaseRequest;
 
-
+/**
+ * @OA\Get(
+ *   tags={"Tag"},
+ *   path="Path",
+ *   summary="Summary",
+ *   @OA\Parameter(ref="#/components/parameters/id"),
+ *   @OA\Response(response=200, description="OK"),
+ *   @OA\Response(response=401, description="Unauthorized"),
+ *   @OA\Response(response=404, description="Not Found")
+ * )
+ */
 class CreateAuthorRequest extends BaseRequest
 {
     public function authorize()
