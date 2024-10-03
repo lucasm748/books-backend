@@ -12,6 +12,7 @@ use App\Infrastructure\Http\Controllers\Book\GetAll\GetBooksController;
 use App\Infrastructure\Http\Controllers\Book\GetById\GetBookByIdController;
 use App\Infrastructure\Http\Controllers\Book\GetByTitle\GetBooksByTitleController;
 use App\Infrastructure\Http\Controllers\Book\Update\UpdateBookController;
+use App\Infrastructure\Http\Controllers\Report\ReportController;
 use App\Infrastructure\Http\Controllers\Subject\Create\CreateSubjectController;
 use App\Infrastructure\Http\Controllers\Subject\Delete\DeleteSubjectController;
 use App\Infrastructure\Http\Controllers\Subject\GetAll\GetSubjectsController;
@@ -20,12 +21,6 @@ use App\Infrastructure\Http\Controllers\Subject\GetById\GetSubjectByIdController
 use App\Infrastructure\Http\Controllers\Subject\Update\UpdateSubjectController;
 use Illuminate\Support\Facades\Route;
 
-/**
- * @OA\Info(
- *   title="Books API",
- *   version="1.0.0",
- *   description="Books catalog management API",
- */
 Route::get('/', function () {
     return response()->json(['message' => 'OK']);
 });
@@ -56,3 +51,5 @@ Route::prefix('books')->group(function () {
     Route::put('/{id}', [UpdateBookController::class, 'update']);
     Route::delete('/{id}', [DeleteBookController::class, 'delete']);
 });
+
+Route::get('report', [ReportController::class, 'generate']);

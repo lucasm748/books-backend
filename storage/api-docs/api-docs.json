@@ -1,0 +1,52 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Books API",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/authors": {
+            "post": {
+                "tags": [
+                    "Authors"
+                ],
+                "summary": "Create a new author",
+                "operationId": "71e055cca5736a0d5ea69cef75b72c52",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "Name of the author",
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Author created successfully"
+                    },
+                    "422": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Authors",
+            "description": "Authors"
+        }
+    ]
+}

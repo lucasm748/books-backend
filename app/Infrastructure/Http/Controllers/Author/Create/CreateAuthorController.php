@@ -7,6 +7,9 @@ use App\Application\UseCases\Author\Create\CreateAuthorUseCase;
 use App\Infrastructure\Http\Controllers\Author\Create\CreateAuthorRequest;
 use Illuminate\Routing\Controller;
 
+/**
+ * @OA\Info(title="Books API", version="1.0")
+ */
 class CreateAuthorController extends Controller
 {
     private readonly CreateAuthorUseCase $usecase;
@@ -16,14 +19,25 @@ class CreateAuthorController extends Controller
         $this->usecase = $usecase;
     }
     /**
-     * @OA\Get(
-     *   tags={"Author"},
-     *   path="/api/authors",
-     *   summary="Creates new author",
-     *   @OA\Parameter(ref="#/components/parameters/id"),
-     *   @OA\Response(response=201, description="OK"),
-     *   @OA\Response(response=422, description="Validation error"),
-
+     * @OA\Post(
+     *     path="/api/authors",
+     *     tags={"Authors"},
+     *     summary="Create a new author",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"name"},
+     *             @OA\Property(property="name", type="string", example="John Doe", description="Name of the author"),
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Author created successfully"
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Invalid input"
+     *     )
      * )
      */
     public function create(CreateAuthorRequest $request)
