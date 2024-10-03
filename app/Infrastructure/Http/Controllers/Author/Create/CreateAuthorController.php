@@ -15,7 +15,17 @@ class CreateAuthorController extends Controller
     {
         $this->usecase = $usecase;
     }
+    /**
+     * @OA\Get(
+     *   tags={"Author"},
+     *   path="/api/authors",
+     *   summary="Creates new author",
+     *   @OA\Parameter(ref="#/components/parameters/id"),
+     *   @OA\Response(response=201, description="OK"),
+     *   @OA\Response(response=422, description="Validation error"),
 
+     * )
+     */
     public function create(CreateAuthorRequest $request)
     {
         $this->usecase->execute(new CreateAuthorInput($request->name));

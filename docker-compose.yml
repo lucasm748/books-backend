@@ -1,6 +1,6 @@
 services:
     books-backend:
-        container_name: 'books-backend'
+        container_name: "books-backend"
         build:
             context: .
             dockerfile: Dockerfile
@@ -16,7 +16,7 @@ services:
             - XDEBUG_MODE=${XDEBUG_MODE}
 
     nginx:
-        container_name: 'books-nginx'
+        container_name: "books-nginx"
         image: nginx:latest
         volumes:
             - ./:/var/www
@@ -31,20 +31,23 @@ services:
             - books-network
 
     mysql:
-        container_name: 'mysql'
+        container_name: "mysql"
         image: mysql:8.0
         restart: unless-stopped
         ports:
-            - '3308:3306'
+            - "3308:3306"
         environment:
-            MYSQL_DATABASE: 'booksdb'
+            MYSQL_DATABASE: "booksdb"
             MYSQL_ALLOW_EMPTY_PASSWORD: 1
             MYSQL_ROOT_PASSWORD: ""
+        volumes:
+            - db_data:/var/lib/mysql
         networks:
             - books-network
-
-
 
 networks:
     books-network:
         driver: bridge
+
+volumes:
+    db_data:

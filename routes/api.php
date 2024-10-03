@@ -20,6 +20,12 @@ use App\Infrastructure\Http\Controllers\Subject\GetById\GetSubjectByIdController
 use App\Infrastructure\Http\Controllers\Subject\Update\UpdateSubjectController;
 use Illuminate\Support\Facades\Route;
 
+/**
+ * @OA\Info(
+ *   title="Books API",
+ *   version="1.0.0",
+ *   description="Books catalog management API",
+ */
 Route::get('/', function () {
     return response()->json(['message' => 'OK']);
 });
