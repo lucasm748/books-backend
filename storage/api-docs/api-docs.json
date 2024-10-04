@@ -1,16 +1,16 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Books API",
+        "title": "Api de Livros",
         "version": "1.0"
     },
     "paths": {
         "/api/authors": {
             "post": {
                 "tags": [
-                    "Authors"
+                    "Autores"
                 ],
-                "summary": "Create a new author",
+                "summary": "Cria um novo autor",
                 "operationId": "71e055cca5736a0d5ea69cef75b72c52",
                 "requestBody": {
                     "required": true,
@@ -22,7 +22,7 @@
                                 ],
                                 "properties": {
                                     "name": {
-                                        "description": "Name of the author",
+                                        "description": "Nome do autor",
                                         "type": "string",
                                         "example": "John Doe"
                                     }
@@ -34,19 +34,770 @@
                 },
                 "responses": {
                     "201": {
-                        "description": "Author created successfully"
+                        "description": "Autor criado com sucesso"
                     },
                     "422": {
-                        "description": "Invalid input"
+                        "description": "Dados inválidos"
+                    }
+                }
+            }
+        },
+        "/api/authors/{id}": {
+            "delete": {
+                "tags": [
+                    "Autores"
+                ],
+                "summary": "Delete author",
+                "operationId": "c69945c7e68ee743759f6a37cb19b086",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Author id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Author deleted"
+                    },
+                    "404": {
+                        "description": "Author not found"
+                    },
+                    "422": {
+                        "description": "Internal server error"
+                    },
+                    "400": {
+                        "description": "Invalid data"
+                    }
+                }
+            }
+        },
+        "/authors": {
+            "get": {
+                "tags": [
+                    "Autores"
+                ],
+                "summary": "Lista todos os autores",
+                "description": "Retorna um array de autores. Retorna um array vazio se nenhum autor for encontrado.",
+                "operationId": "58bc835c48c1c484ad199f717764db69",
+                "responses": {
+                    "200": {
+                        "description": "Lista de autores retornada com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Author"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "api/authors/{id}": {
+            "get": {
+                "tags": [
+                    "Autores"
+                ],
+                "summary": "Retorna um autor",
+                "operationId": "77baf89eea7dcaeb56d41a83c3b36364",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do autor",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Author"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Autor não encontrado"
+                    },
+                    "422": {
+                        "description": "Dados inválidos"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Autores"
+                ],
+                "summary": "Atualiza um autor",
+                "operationId": "1fd1f8a13d8166a693d8ddd9325f447f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do autor",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "Nome do autor",
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Autor atualizado"
+                    },
+                    "404": {
+                        "description": "Autor não encontrado"
+                    },
+                    "422": {
+                        "description": "Dados inválidos"
+                    }
+                }
+            }
+        },
+        "api/authors": {
+            "get": {
+                "tags": [
+                    "Autores"
+                ],
+                "summary": "Retorna autores pelo nome",
+                "operationId": "a4b982c6b4cc39a4a2bfa2ed4e22a96e",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Nome do autor",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Author"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Autor não encontrado"
+                    },
+                    "422": {
+                        "description": "Dados inválidos"
+                    }
+                }
+            }
+        },
+        "api/books": {
+            "get": {
+                "tags": [
+                    "Livros"
+                ],
+                "summary": "Lista todos os livros",
+                "description": "Retorna um array de livros. Retorna um array vazio se nenhum livro for encontrado.",
+                "operationId": "94c9f2edcf9a72021b8dccc0ab6197e3",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Book"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Livros não encontrados"
+                    },
+                    "422": {
+                        "description": "Dados inválidos"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Livros"
+                ],
+                "summary": "Cria um livro",
+                "operationId": "93073e25bce5749ca8d38c3abe97ed0d",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "publisher",
+                                    "edition",
+                                    "publicationYear",
+                                    "price",
+                                    "authors",
+                                    "subjects"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "description": "Título do livro",
+                                        "type": "string",
+                                        "example": "Livro de teste"
+                                    },
+                                    "publisher": {
+                                        "description": "Editora do livro",
+                                        "type": "string",
+                                        "example": "Editora teste"
+                                    },
+                                    "edition": {
+                                        "description": "Edição do livro",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "publicationYear": {
+                                        "description": "Ano de publicação do livro",
+                                        "type": "integer",
+                                        "example": 2021
+                                    },
+                                    "price": {
+                                        "description": "Preço do livro",
+                                        "type": "number",
+                                        "example": 100
+                                    },
+                                    "authors": {
+                                        "description": "Array de ids dos autores",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "example": [
+                                            "1233423ABC",
+                                            "332323A322123"
+                                        ]
+                                    },
+                                    "subjects": {
+                                        "description": "Array de ids dos assuntos",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "example": [
+                                            "AW21212F",
+                                            "1221DDS1212"
+                                        ]
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Livro criado com sucesso"
+                    },
+                    "422": {
+                        "description": "Dados inválidos"
+                    }
+                }
+            }
+        },
+        "api/books/{id}": {
+            "get": {
+                "tags": [
+                    "Livros"
+                ],
+                "summary": "Retorna um livro",
+                "operationId": "5af7b51277a225ba468d894e39beee13",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do livro",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Book"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Livro não encontrado"
+                    },
+                    "422": {
+                        "description": "Dados inválidos"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Livros"
+                ],
+                "summary": "Atualiza um livro",
+                "operationId": "976b36ed0dbad97e615af6bb6e36a5ce",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do livro",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "publisher",
+                                    "edition",
+                                    "publicationYear",
+                                    "price",
+                                    "authors",
+                                    "subjects"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "description": "Título do livro",
+                                        "type": "string",
+                                        "example": "Livro 1"
+                                    },
+                                    "publisher": {
+                                        "description": "Editora do livro",
+                                        "type": "string",
+                                        "example": "Editora 1"
+                                    },
+                                    "edition": {
+                                        "description": "Edição do livro",
+                                        "type": "string",
+                                        "example": "1"
+                                    },
+                                    "publicationYear": {
+                                        "description": "Ano de publicação do livro",
+                                        "type": "integer",
+                                        "example": 2021
+                                    },
+                                    "price": {
+                                        "description": "Preço do livro",
+                                        "type": "number",
+                                        "example": 100
+                                    },
+                                    "authors": {
+                                        "description": "Array de autores",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "subjects": {
+                                        "description": "Array de assuntos",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Livro atualizado"
+                    },
+                    "404": {
+                        "description": "Livro, autor ou assunto não encontrados"
+                    },
+                    "422": {
+                        "description": "Dados inválidos"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Livros"
+                ],
+                "summary": "Remove um livro",
+                "operationId": "166f813db09318c295b3fc119c13a71a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do livro",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Livro removido"
+                    },
+                    "404": {
+                        "description": "Livro não encontrado"
+                    },
+                    "422": {
+                        "description": "Dados inválidos"
+                    }
+                }
+            }
+        },
+        "api/books/title/{title}": {
+            "get": {
+                "tags": [
+                    "Livros"
+                ],
+                "summary": "Lista de livros pelo título",
+                "description": "Retorna um array de livros. Retorna um array vazio se nenhum livro for encontrado.",
+                "operationId": "7ae6352863bb616b9fd69a1d7d8f32cf",
+                "parameters": [
+                    {
+                        "name": "title",
+                        "in": "path",
+                        "description": "Título do livro",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Book"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Livros não encontrados"
+                    },
+                    "422": {
+                        "description": "Dados inválidos"
+                    }
+                }
+            }
+        },
+        "api/subjects": {
+            "get": {
+                "tags": [
+                    "Assuntos"
+                ],
+                "summary": "Lista todos os assuntos",
+                "description": "Retorna um array de assuntos. Retorna um array vazio se nenhum assunto for encontrado.",
+                "operationId": "463090ac7c209db287b8c45203fb4dfc",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Subject"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Dados inválidos"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Assuntos"
+                ],
+                "summary": "Cria um assunto",
+                "operationId": "42038f04ab6fc3990caf4b67bba40810",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "description"
+                                ],
+                                "properties": {
+                                    "description": {
+                                        "description": "Descrição do assunto",
+                                        "type": "string",
+                                        "example": "Assunto 1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Assunto criado"
+                    },
+                    "422": {
+                        "description": "Dados inválidos"
+                    }
+                }
+            }
+        },
+        "/api/subjects/{id}": {
+            "delete": {
+                "tags": [
+                    "Assuntos"
+                ],
+                "summary": "Remover assunto",
+                "operationId": "c90fb4d7a0da3c5d1198aac7e3842f2a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do assunto",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Assunto deletado"
+                    },
+                    "404": {
+                        "description": "Assunto não encontrado"
+                    },
+                    "422": {
+                        "description": "Dados inválidos"
+                    }
+                }
+            }
+        },
+        "api/subjects/description/{description}": {
+            "get": {
+                "tags": [
+                    "Assuntos"
+                ],
+                "summary": "Lista assuntos por descrição",
+                "description": "Retorna um array de assuntos. Retorna um array vazio se nenhum assunto for encontrado.",
+                "operationId": "457f4859ab9a8ce244738172c1e9588a",
+                "parameters": [
+                    {
+                        "name": "description",
+                        "in": "path",
+                        "description": "Descrição do assunto",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Subject"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Dados inválidos"
+                    }
+                }
+            }
+        },
+        "api/subjects/{id}": {
+            "get": {
+                "tags": [
+                    "Assuntos"
+                ],
+                "summary": "Retorna um Assunto",
+                "operationId": "ac500792778c6daa151d1ada4ce4d89d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do assunto",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Book"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Assunto não encontrado"
+                    },
+                    "422": {
+                        "description": "Dados inválidos"
                     }
                 }
             }
         }
     },
+    "components": {
+        "schemas": {
+            "Author": {
+                "title": "Author",
+                "properties": {
+                    "id": {
+                        "description": "Id do autor",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Nome do autor",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Book": {
+                "title": "Book",
+                "properties": {
+                    "id": {
+                        "description": "Id do livro",
+                        "type": "string"
+                    },
+                    "title": {
+                        "description": "Título do livro",
+                        "type": "string"
+                    },
+                    "publisher": {
+                        "description": "Editora do livro",
+                        "type": "string"
+                    },
+                    "edition": {
+                        "description": "Edição do livro",
+                        "type": "string"
+                    },
+                    "publicationYear": {
+                        "description": "Ano de publicação do livro",
+                        "type": "integer"
+                    },
+                    "price": {
+                        "description": "Preço do livro",
+                        "type": "number"
+                    },
+                    "authors": {
+                        "description": "Array de autores",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Author"
+                        }
+                    },
+                    "subjects": {
+                        "description": "Array de assuntos",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Subject"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "Subject": {
+                "title": "Subject",
+                "properties": {
+                    "id": {
+                        "description": "Id do assunto",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Descrição do assunto",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
     "tags": [
         {
-            "name": "Authors",
-            "description": "Authors"
+            "name": "Autores",
+            "description": "Autores"
+        },
+        {
+            "name": "Livros",
+            "description": "Livros"
+        },
+        {
+            "name": "Assuntos",
+            "description": "Assuntos"
         }
     ]
 }
