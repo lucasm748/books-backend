@@ -1,4 +1,5 @@
 name: CI/CD Pipeline
+
 on:
   push:
     branches:
@@ -6,6 +7,7 @@ on:
   pull_request:
     branches:
       - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -42,5 +44,5 @@ jobs:
       - name: Build and push Docker image
         run: |
           docker build . -t books-backend
-          docker tag books-backend:latest ${{ secrets.DOCKER_USERNAME }}/books-backend:latest
-          docker push ${{ secrets.DOCKER_USERNAME }}/books-backend:latest
+          docker tag books-backend:latest ${{ secrets.DOCKER_HUB_USER }}/books-backend:latest
+          docker push ${{ secrets.DOCKER_HUB_USER }}/books-backend:latest
