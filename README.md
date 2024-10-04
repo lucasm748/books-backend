@@ -14,7 +14,7 @@ O projeto consiste em um cadastro de livros onde temos:
 ## Teconlogias Empregadas
 
 -   Laravel Framework 11
--   PHP 8.3
+-   PHP 8.2
 -   MySQL 8
 -   Composer
 -   PHP Unit Tests
@@ -45,5 +45,6 @@ Para gerar o coverage report
 Para rodar as migrations
 `docker exec books-backend php artisan migrate `
 
-###Postman Collection
+## Postman Collection
+
 A Collection do postman está disponível para download aqui no repositório na raiz do projeto.

@@ -32,8 +32,10 @@ RUN php artisan key:generate
 RUN php artisan optimize
 RUN php artisan storage:link
 
-RUN chown -R www-data:www-data /var/www
-RUN chmod -R 755  storage bootstrap/cache
+RUN mkdir -p /var/www/storage/logs \
+    && chown -R www-data:www-data /var/www/storage \
+    && chmod -R 775 /var/www/storage
+
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 EXPOSE 9000 9003

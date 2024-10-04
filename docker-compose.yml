@@ -14,13 +14,14 @@ services:
             - mysql
         environment:
             - XDEBUG_MODE=${XDEBUG_MODE}
+            - PUID=1000
+            - PGID=1000
 
     nginx:
         container_name: "books-nginx"
         image: nginx:latest
         volumes:
             - ./:/var/www
-            - ./storage:/var/www/storage
             - ./.docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
             - ./.docker/nginx/snippets/fastcgi-php.conf:/etc/nginx/snippets/fastcgi-php.conf
         ports:
